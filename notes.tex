@@ -1,0 +1,325 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts}
+
+\title{Notes on IR}
+\author{Nathan Chappell}
+\begin{document}
+
+\maketitle
+
+Notes from \cite{robertson04}
+
+\begin{itemize}
+\item Probability Ranking Principle
+    \begin{quote}
+    The probability ranking principle (Robertson, 1977) states that for optimal performance, documents should be ranked in order of probability of relevance to the request or information need, as calculated from whatever evidence is available to the system
+    \end{quote}
+
+    This is a nice principle, but may not be appropriate for a system designed to help someone learn, rather than just retrieve information.  Given context (i.e. user state), some information that is not ``most relevant'' to what the user has asked may be more advantageous from the perspective of learning.  This is more in line with the notion of trying to maximize ``information content'' transmitted across a channel, i.e. some documents not most relevant to a query may help a user learn more, perhaps even if they are not as releva Given context (i.e. user state), some information that is not ``most relevant'' to what the user has asked may be more advantageous from the perspective of learning.  This is more in line with the notion of trying to maximize ``information content'' transmitted across a channel.  In particular, what a student must see in order to learn what they want to learn may be very indirectly related to a query, especially if the query is ill-founded (consider a wise teacher helping his students learn, he should be more of a guide than a presenter of information).
+
+\item RSJ Weight
+    \begin{align*}
+    p_i & =  P(\text{document contains } t_i \!&|&\quad \text{document is relevant}) \\
+    q_i & =  P(\text{document contains } t_i \!&|&\quad \text{document is not relevant})
+    \end{align*}
+    \[ RSJ(t_i) = \log\frac{p_i(1-q_i)}{q_i(1-p_i)} \]
+
+    This can be given a simple estimate in terms of counting.  Note that $p_i$ and $(1-q_i)$ can be called ``hits,'' in that the events correspond to a term's appearance and relevance coinciding.  Let the complimentary events be called ``misses,'' and the function $-\log(P(\cdot))$ be the ``measure of surprise'' of an event (something like ``information content'').  Then $RSJ$ is the difference between the measure of surpise of misses and hits.  I.e. a term is weighted heavily if that term having a miss is very surprising, while getting a hit is not very surprising.
+
+    Note that, while it was Robertson's intention to remove the information-theoretic content from tf-idf, I'm putting it back into his measure.
+
+\item RSJ as IDF
+    I don't think I'm smart enough to see how a fudged RSJ being equivalent to a naive Bayes model is better than the information-theoretic explanation given by Aizawa.
+
+    He is definitely right that the question of event space is troubling...  It is hard to see what the right space should be.  My initial thought was to remove the notion of event space altogether, and consider the query/ response action as a act of communication -- an attempt by multiple parties to compute a function using a channel as infrequently as possible.
+
+\item Document Normalization
+    E.g., if a document is very long, under certain circumstances it should be normalized.  It may be long because the author is wordy, or it may be long because the actual content is vast.
+
+\end{itemize}
+
+Notes from \cite{razborov-1}
+
+\begin{itemize}
+
+\item Definition
+    \begin{quote}
+        Communication complexity studies ways to arrange {\it communications} between several parties so that at the end of the day the learn what they are supposed to learn, and to do this in the most efficient, or least {\it complex} way.
+    \end{quote}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+
+\item Protocol
+    Given inputs $x \in X$ (Alice), $y \in Y$ (Bob), we seek to calculate $f(x,y)$ transmitting as few bits as possible.
+    \[
+    \begin{array}{r | c | c | c | l}
+        x & & & & y \\
+        \hline
+        f_1(x) &     &     &     &            \\
+               & \ra & a_1 & \ra &            \\
+               &     &     &     & f_2(y,a_1) \\
+               & \la & b_1 & \la &            \\
+        f_1(x,a_1,b_1) &     &     &     &    \\
+               & \ra & a_2 & \ra &            \\
+               &     &     &     & f_2(y,a_1,b_1,a_2) \\
+               & \la & b_1 & \la &            \\
+        \vdots &     & \vdots    &  & \vdots  \\
+               & \ra & a_t & \ra &            \\
+               &     &     &     & f_2(y,\dots,a_t) = f(x,y) \\
+    \end{array}
+    \]
+
+    The cost associated with the above protocol instance $P = P(f_1,f_2)$ is
+
+    \[ C(P,x,y) = \sum_{i=1}^t |a_i| + |b_i| \]
+
+    There is a useful and general argument for lower bounding the complexity of a distributed problem made by considering the space of all possible message sequences (histories $R_h$) possibly made by a protocol $\{0,1\}^C(P)$, then relating these to coverings by combinatorial rectangles of the input space.  The main idea is that the only thing that needs to be considered is $R_h = (a_1,b_1,\dots,a_t,b_t)$.  I.e. $f_1$ depends only on $x$, and $(b_1,b_2,\dots)$ (this is some sort of an independence property).  The argument is similar to the discrete geometric argument relating coverings to $\delta-$nets on a ball: we upper bound the size by volumetric and counting arguments.  Here, we lower bound the complexity because the complexity must be ``complex enough'' to cover all the rectangles.  The rectangles exists due to the ``independence'' mentioned before.
+
+\end{itemize}
+
+Notes from \cite{jansen09}
+
+\begin{itemize}
+
+\item Looks useful:
+    \begin{quote}
+    The core idea of Ingwersen and Jarvelin's framework is ``how evidence of a searcher's information behavior may be applied to guide or adjust algorithmic information processing in system components through IR interaction''
+    \end{quote}
+
+\item {\it Intellectual Perspective}
+    \begin{itemize}
+        \item Information Searching \\
+            {\footnotesize
+                interaction, goals/ tasks, behaviors/ strategies}
+        \item Information Retrieval \\
+            {\footnotesize
+                representing, storing, and finding information objects}
+        \item Both
+    \end{itemize}
+
+\item {\it Theoretical Orientation}
+    \begin{itemize}
+        \item People
+        \item Technology
+        \item Information
+    \end{itemize}
+
+    Not all seventeen concepts
+
+    {\bf Information -- Information Searching}
+    \begin{itemize}
+        \item {\it Hierarchical Relationship of Information} 
+        \item {\it Perceived Benefits}
+    \end{itemize}
+
+    {\bf Information -- Both}
+    \begin{itemize}
+        \item {\it Relevance}
+    \end{itemize}
+
+    {\bf Information -- Information Retrieval}
+    \begin{itemize}
+        \item {\it Representation} (sum of attributes)
+        \item {\it Ranking}
+        \item {\it Document Similarity}
+    \end{itemize}
+
+    {\bf People -- Information Searching}
+    \begin{itemize}
+        \item {\it Least Effort}
+        \item {\it Iterative Process}
+    \end{itemize}
+
+    {\bf People -- Both}
+    \begin{itemize}
+        \item {\it Interaction}
+        \item {\it Resolving an Uncertainty}
+    \end{itemize}
+
+    {\bf People -- Information Retrieval}
+    \begin{itemize}
+        \item {\it Provision} (assumed that providing information helps a user accomplish some task)
+    \end{itemize}
+
+    {\bf Technology -- Information Searching}
+    \begin{itemize}
+        \item {\it Channel Preference}
+    \end{itemize}
+
+    {\bf Technology -- Both}
+    \begin{itemize}
+        \item {\it Information Obtainability}
+    \end{itemize}
+
+    {\bf Technology -- Information Retrieval}
+    \begin{itemize}
+        \item {\it Query} (transformed input)
+        \item {\it Neutrality of Technology}
+        \item {\it Memex Vision}
+    \end{itemize}
+
+    \item[Multiple Definitions] Information has physical (entropy), cognitive (state-change), and affective (touchy-feely) ``aspects.''  As-process, as-knowledge, as-thing, as-attribute.
+
+    \item[Hierarchical Relationships] DIKW: {\it data, information, knowledge, wisdom} ({\footnotesize database, {\bf IR}, {\bf IS}, AI})
+
+    \item[Information Ranking]
+        \begin{quote}
+            In information searching, information ranking also is a notion well accepted; however, information searching researchers tend to focus more on the cognitive, affective, or contextual factors that determine the evaluation of search results and eventually the usefulness of information.
+        \end{quote}
+
+    \item[Relevance]
+        \begin{quote}
+            Saracevic(2007b) defined relevance as a relation between information and contexts (e.g., information need, intent, topic, problem) based on some property reflecting a relevance manifestation (e.g., topicality, utility, cognitive match).
+        \end{quote}
+
+    \item[Query]
+        \begin{quote}
+            a set of one or more symbols that is combined with other syntax and used as a command for an information retrieval systemto locate possibly relevant content indexed by that system
+        \end{quote}
+
+    \item[Memex Vison]
+        \begin{quote}
+             By nature though, both fields focus on the benefits of the use of technology, with little consideration of other options. As Rosenberg (1974) stated, the computer is not just a tool or machine but rather it is “a way of looking at the world” (p. 264) for these fields.
+        \end{quote}
+
+    \item[Information Obtainability]
+        \begin{quote}
+            information will be  used  in  direct  proportion  to  how  easy  it  is  to  obtain (Summit, 1993).
+        \end{quote}
+
+        \begin{quote}
+            The lines of research in both fields hone in on making information easier to access, in terms of interfaces, expression of need or query, contextual help, and information visualization.
+        \end{quote}
+
+
+\end{itemize}
+
+Notes from \cite{fuhr08}
+
+\begin{itemize}
+
+\item A major assumption of the probability ranking principle (PRP) for IR is that
+    \begin{quote}
+        the relevance of a document to a query is independent of the relevance of other documents the user has seen before.  The task addressed by the PRP is the user's scanning through the list of ranked documents.
+    \end{quote}
+
+\item Often user's want different answers to the same problem (aspectual recall), and query reformulation is a more crucial (i.e. `expensive') user operation.
+
+\item Model Assumptions:
+    \begin{enumerate}
+        \item Only consider functional level of interaction \\
+        {\footnotesize e.g. don't consider the cost of an action depending on the interface used.}
+        \item Decisions are the major activity \\
+        {\footnotesize system offers binary choices to user.  User may accept, in which case the decision is {\bf positive}.  If the user does not wish to modify the decision immediately after learning its consequences, the decision is {\bf correct}.}
+        \item Users evaluate choices in linear order
+        \item Only positive, correct decisions are of benefit to the user
+    \end{enumerate}
+
+\item {\it Situations}.  A {\it situation} consists of the list of choices, the user's information need, and the system's knowledge of the user.  A positive decision changes the situation.  The information need is static for a given situation.
+
+\item {\bf Expected benefit to user }
+    \begin{itemize}
+        {\bf Event Space}
+        \item[$S$] set of situations
+        \item[$s_i$] situation $i$
+        \item[$C_i$] set of choices for $s_i$
+        \item[$n_i$] $|C_i|$
+        \item[$c_{ij}$] a choice for $s_i$ \\
+        {\bf Probabilistic Parameters}
+        \item[$p_{ij}$] probability $c_{ij}$ is accepted in $s_i$
+        \item[$q_{ij}$] probability choice is correct \\
+        {\bf Cost Parameters}
+        \item[$e_{ij}$] effort of making choice $c_{ij}$
+        \item[$b_{ij}$] benefit of making choice $c_{ij}$
+        \item[$g_{ij}$] effort of correcting choice $c_{ij}$
+        \item The independence assumption is that $p_{ij}$ is independent of choices {\it rejected} before (incorrect past choices).
+        \item The formula:
+    \[ E(c_{ij}) = e_{ij} + p_{ij}(q_{ij}b_{ij} + (1-q_{ij})g_{ij}) \]
+        {\bf Average Benefit }
+        \[ a_{ij} = q_{ij}b_{ij} + (1-q_{ij})g_{ij} \]
+        \[ E(c_{ij}) = e_{ij} + p_{ij}a_{ij} \]
+    \end{itemize}
+
+\item Choices with $p_{ij} = 0$ are implicitly excluded from the list, as their expected benefit will be negative ($e_{ij} < 0$).
+
+\item Three strategies for maximizing $c_{ij}$:
+    \begin{enumerate}
+        \item minimize $e_{ij}$ (effort)
+        \item maximize $p_{ij}$ (selection probability)
+        \item maximize $g_{ij}$ (correctness probability)
+    \end{enumerate}
+
+\item Expected benefit of list.  Given a list of choices $r_i = \langle c_{i1}, c_{i2}, \dots, c_{in} \rangle$, the expected benefit is
+    \[ r_i = e_{i1} + p_{i1}a_{i1} + 
+             (1-p_{i1})( e_{i2} + p_{i2}a_{i2} +
+             (1-p_{i2})( e_{i3} + p_{i3}a_{i3} + \cdots \]
+    \[ r_i = \sum_{j=1}^n \left[(e_{ij} + p_{ij}a_{ij})
+                          \prod_{k=1}^{j-1} (1-p_{ik})\right] \]
+    Note the similarity of this to a Markov Model...
+
+\item {\bf Comparing choice orders} \\
+    Let \[ t_i^{l,l+1} = 
+        (e_{il} + p_{il}a_{il})\prod_{k=1}^{l-1}(1-p_{ik} \]
+    then we can compare the expected benefit of a list with the list made from transposing two elements by analyzing the term
+        \[ t_i^{l,l+1} - t_i^{l+1,l} \]
+    If this term is non-negative, then the terms should not be transposed ($c_{il}$ and $c_{i(l+1)}$ are in the right order in list $r_i$).  After some algebra, the following ranking function is arrived at:
+        \[ \rho(c_{ij}) = a_{ij} + \frac{e_{ij}}{p_{ij}} \]
+    {\bf Remember that $e_{ij}$ is negative!}
+
+\item {\it {\bf IIR-PRP} (\it Probability ranking principle for interactive information retrieval) }
+
+    Order the list of choices in decreasing values of 
+    \[ \rho(c_{ij}) = a_{ij} + \frac{e_{ij}}{p_{ij}} \]
+
+\item Parameter Groups
+    \begin{enumerate}
+        \item[$p_{ij}$](Selection Probability) \\
+            {\footnotesize make dynamic for changing information requirements}
+        \item[$e_{ij}, g_{ij}, q_{ij}$](Effort Parameters) \\
+            {\footnotesize UI, expertise of user}
+        \item[$a_{ij}$](Benefit) \\
+            {\footnotesize general problem, entropy}
+    \end{enumerate}
+
+\end{itemize}
+
+%
+
+\begin{thebibliography}{99}
+
+    \bibitem{robertson04}
+        {\it Understanding Inverse Document Frequency:
+            on Theoretical Arguments for IDF} \\
+        Robertson, Stephen \\
+        Microsoft Research \\
+        Journal of Documentation 60
+
+    \bibitem{razborov-1}
+        {\it Communication Complexity} \\
+        Razborov, Alexander \\
+        University of Chicago \\
+        Steklov Mathematical Institue Moskow \\
+
+    \bibitem{jansen09}
+        {\it The Seventeen Theoretical Constructs of Information
+            Searching and Information Retrieval}
+        Jansen, Bernard \\
+        Pennsylvania State University \\
+        Rieh, Soo \\
+        University of Michigan \\
+        Journal of the American Society for 
+        Information Science and Technology
+
+    \bibitem{fuhr08}
+        {\it A Probability Ranking Principle for
+            Interactive Information Retrieval} \\
+        Fuhr, Norbert \\
+        University of Duisberg--Essen, Germany \\
+        Information Retrieval, Springer 2008
+
+
+
+\end{thebibliography}
+
+\end{document}
