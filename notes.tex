@@ -1,5 +1,15 @@
 \documentclass{article}
-\usepackage{amsmath, amsfonts}
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\bibtitle}[1]{{\it #1}}
+\newcommand{\note}[1]{{\footnotesize #1}}
+\newcommand{\hi}[1]{{\large {\bf #1}}}
+\newcommand{\hii}[1]{{\it #1}}
+\newcommand{\hiii}[1]{{\it #1}}
+\newcommand{\M}{\mathcal{M}}
 
 \title{Notes on IR}
 \author{Nathan Chappell}
@@ -7,7 +17,7 @@
 
 \maketitle
 
-Notes from \cite{robertson04}
+\hi{Notes from \cite{robertson04}}
 
 \begin{itemize}
 \item Probability Ranking Principle
@@ -19,8 +29,8 @@ Notes from \cite{robertson04}
 
 \item RSJ Weight
     \begin{align*}
-    p_i & =  P(\text{document contains } t_i \!&|&\quad \text{document is relevant}) \\
-    q_i & =  P(\text{document contains } t_i \!&|&\quad \text{document is not relevant})
+    p_i & =  P(\text{document contains } t_i \;|\;\text{document is relevant}) \\
+    q_i & =  P(\text{document contains } t_i \;|\;\text{document is not relevant})
     \end{align*}
     \[ RSJ(t_i) = \log\frac{p_i(1-q_i)}{q_i(1-p_i)} \]
 
@@ -38,7 +48,7 @@ Notes from \cite{robertson04}
 
 \end{itemize}
 
-Notes from \cite{razborov-1}
+\hi{Notes from \cite{razborov-1}}
 
 \begin{itemize}
 
@@ -47,8 +57,6 @@ Notes from \cite{razborov-1}
         Communication complexity studies ways to arrange {\it communications} between several parties so that at the end of the day the learn what they are supposed to learn, and to do this in the most efficient, or least {\it complex} way.
     \end{quote}
 
-\newcommand{\ra}{\rightarrow}
-\newcommand{\la}{\leftarrow}
 
 \item Protocol
     Given inputs $x \in X$ (Alice), $y \in Y$ (Bob), we seek to calculate $f(x,y)$ transmitting as few bits as possible.
@@ -78,7 +86,7 @@ Notes from \cite{razborov-1}
 
 \end{itemize}
 
-Notes from \cite{jansen09}
+\hi{Notes from \cite{jansen09}}
 
 \begin{itemize}
 
@@ -87,18 +95,18 @@ Notes from \cite{jansen09}
     The core idea of Ingwersen and Jarvelin's framework is ``how evidence of a searcher's information behavior may be applied to guide or adjust algorithmic information processing in system components through IR interaction''
     \end{quote}
 
-\item {\it Intellectual Perspective}
+\item \hii{Intellectual Perspective}
     \begin{itemize}
         \item Information Searching \\
-            {\footnotesize
+            \note{
                 interaction, goals/ tasks, behaviors/ strategies}
         \item Information Retrieval \\
-            {\footnotesize
+            \note{
                 representing, storing, and finding information objects}
         \item Both
     \end{itemize}
 
-\item {\it Theoretical Orientation}
+\item \hii{Theoretical Orientation}
     \begin{itemize}
         \item People
         \item Technology
@@ -109,59 +117,59 @@ Notes from \cite{jansen09}
 
     {\bf Information -- Information Searching}
     \begin{itemize}
-        \item {\it Hierarchical Relationship of Information} 
-        \item {\it Perceived Benefits}
+        \item \hiii{Hierarchical Relationship of Information} 
+        \item \hiii{Perceived Benefits}
     \end{itemize}
 
     {\bf Information -- Both}
     \begin{itemize}
-        \item {\it Relevance}
+        \item \hiii{Relevance}
     \end{itemize}
 
     {\bf Information -- Information Retrieval}
     \begin{itemize}
-        \item {\it Representation} (sum of attributes)
-        \item {\it Ranking}
-        \item {\it Document Similarity}
+        \item \hiii{Representation} (sum of attributes)
+        \item \hiii{Ranking}
+        \item \hiii{Document Similarity}
     \end{itemize}
 
     {\bf People -- Information Searching}
     \begin{itemize}
-        \item {\it Least Effort}
-        \item {\it Iterative Process}
+        \item \hiii{Least Effort}
+        \item \hiii{Iterative Process}
     \end{itemize}
 
     {\bf People -- Both}
     \begin{itemize}
-        \item {\it Interaction}
-        \item {\it Resolving an Uncertainty}
+        \item \hiii{Interaction}
+        \item \hiii{Resolving an Uncertainty}
     \end{itemize}
 
     {\bf People -- Information Retrieval}
     \begin{itemize}
-        \item {\it Provision} (assumed that providing information helps a user accomplish some task)
+        \item \hiii{Provision} (assumed that providing information helps a user accomplish some task)
     \end{itemize}
 
     {\bf Technology -- Information Searching}
     \begin{itemize}
-        \item {\it Channel Preference}
+        \item \hiii{Channel Preference}
     \end{itemize}
 
     {\bf Technology -- Both}
     \begin{itemize}
-        \item {\it Information Obtainability}
+        \item \hiii{Information Obtainability}
     \end{itemize}
 
     {\bf Technology -- Information Retrieval}
     \begin{itemize}
-        \item {\it Query} (transformed input)
-        \item {\it Neutrality of Technology}
-        \item {\it Memex Vision}
+        \item \hiii{Query} (transformed input)
+        \item \hiii{Neutrality of Technology}
+        \item \hiii{Memex Vision}
     \end{itemize}
 
     \item[Multiple Definitions] Information has physical (entropy), cognitive (state-change), and affective (touchy-feely) ``aspects.''  As-process, as-knowledge, as-thing, as-attribute.
 
-    \item[Hierarchical Relationships] DIKW: {\it data, information, knowledge, wisdom} ({\footnotesize database, {\bf IR}, {\bf IS}, AI})
+    \item[Hierarchical Relationships] DIKW: {\it data, information, knowledge, wisdom} (\note{ database, {\bf IR}, {\bf IS}, AI})
 
     \item[Information Ranking]
         \begin{quote}
@@ -195,7 +203,7 @@ Notes from \cite{jansen09}
 
 \end{itemize}
 
-Notes from \cite{fuhr08}
+\hi{Notes from \cite{fuhr08}}
 
 \begin{itemize}
 
@@ -209,14 +217,14 @@ Notes from \cite{fuhr08}
 \item Model Assumptions:
     \begin{enumerate}
         \item Only consider functional level of interaction \\
-        {\footnotesize e.g. don't consider the cost of an action depending on the interface used.}
+        \note{ e.g. don't consider the cost of an action depending on the interface used.}
         \item Decisions are the major activity \\
-        {\footnotesize system offers binary choices to user.  User may accept, in which case the decision is {\bf positive}.  If the user does not wish to modify the decision immediately after learning its consequences, the decision is {\bf correct}.}
+        \note{ system offers binary choices to user.  User may accept, in which case the decision is {\bf positive}.  If the user does not wish to modify the decision immediately after learning its consequences, the decision is {\bf correct}.}
         \item Users evaluate choices in linear order
         \item Only positive, correct decisions are of benefit to the user
     \end{enumerate}
 
-\item {\it Situations}.  A {\it situation} consists of the list of choices, the user's information need, and the system's knowledge of the user.  A positive decision changes the situation.  The information need is static for a given situation.
+\item \hii{Situations}.  A {\it situation} consists of the list of choices, the user's information need, and the system's knowledge of the user.  A positive decision changes the situation.  The information need is static for a given situation.
 
 \item {\bf Expected benefit to user }
     \begin{itemize}
@@ -267,7 +275,7 @@ Notes from \cite{fuhr08}
         \[ \rho(c_{ij}) = a_{ij} + \frac{e_{ij}}{p_{ij}} \]
     {\bf Remember that $e_{ij}$ is negative!}
 
-\item {\it {\bf IIR-PRP} (\it Probability ranking principle for interactive information retrieval) }
+\item \hii{{\bf IIR-PRP} (\it Probability ranking principle for interactive information retrieval) }
 
     Order the list of choices in decreasing values of 
     \[ \rho(c_{ij}) = a_{ij} + \frac{e_{ij}}{p_{ij}} \]
@@ -275,35 +283,152 @@ Notes from \cite{fuhr08}
 \item Parameter Groups
     \begin{enumerate}
         \item[$p_{ij}$](Selection Probability) \\
-            {\footnotesize make dynamic for changing information requirements}
+            \note{ make dynamic for changing information requirements}
         \item[$e_{ij}, g_{ij}, q_{ij}$](Effort Parameters) \\
-            {\footnotesize UI, expertise of user}
+            \note{ UI, expertise of user}
         \item[$a_{ij}$](Benefit) \\
-            {\footnotesize general problem, entropy}
+            \note{ general problem, entropy}
     \end{enumerate}
+
+\end{itemize}
+
+\hi{Notes from \cite{saracevic07}}
+
+\begin{itemize}
+    
+\item \hii{Relevance Clues}
+    Different users use similar criteria, but apply different weights depending on the user, class of user, task, and progress in task.
+    \begin{itemize}
+    {\bf Criteria:}\\
+    {\bf Information Factors}
+    \item Content \\
+        \note{topic, quality, depth, scope, currency, treatment, clarity}
+    \item Object \\
+        \note{type, organization, representation, format, availability, accessibility, costs}
+    \item Validity \\
+        \note{accuracy, authority, verifiability} \\
+    {\bf Human Factors}
+    \item Situational Match \\
+        \note{usability, urgency, value}
+    \item Cognitive Match \\
+        \note{understanding, \emph{novelty}, mental effort}
+    \item Affective Match \\
+        \note{emotional response, fun, frustration, uncertainty}
+    \item Belief Match
+        \note{confidence, personal credence}
+    \end{itemize}
+
+\item Relevance feedback improves user performance, but users tend not to use it!
+
+\item \hii{Central assumptions in IR evaluation}
+    \hiii{\emph{(Weak)} Relevance is:}
+    \begin{itemize}
+    \item Topical
+    \item Binary
+    \item Independent
+    \item Stable
+    \item Consistent
+    \end{itemize}
+
+\item \hii{No Consistency}  Relevancy judgements can be very inconsistent among judges (expect no better than $70$\% among experts, closer to $30/50$\% among different groups).
+
+\item "different  retrieval  systems  are  better  at  finding  the  highlyrelevant documents than those that are better at finding generally relevant documents."
+
+\item 
+    \begin{quote}
+    Subject  expertise  seems  to  be  one  variable  that  accounts strongly for differences in relevance inferences by group of judges -- higher  expertise results  in  higher  agreement, less differences.
+    \end{quote}
+
+\item \hii{Relevancy Measures}  It seems that interval measures, e.g. $[0,1]$ are better than binary (relevant/ not-relevant) and graded (due to bias).  The measures tend to be bimodal, with peaks at the ends \note{note to self: maybe something like a beta distribution? Look into ``subjective logic,'' it seems that an application of trust networks and subjective bayesian logic in IR may be novel and useful}
+
+\item \hii{Independence}
+    \begin{quote}
+        Information objects presented early have a higher proba-bility of being inferred as relevant...  Relevance judg-ments do change as information is added.
+    \end{quote}
+
+\item \hii{Conclusion}  In the conclusion to the article Saracevic implies that there is a lot of room for research and, even more so, implementation of better relevance mechanisms in IR.  It would seem that there is a lack.
+
+\end{itemize}
+
+\hi{Notes from \cite{shannon48}}
+
+\begin{itemize}
+
+\item \hii{Mutual Information}\\
+    Considering a noisy channel, the question is how to measure the information received.  If the channel is completely noisy, i.e. you get a 1 or 0 with $p=.5$ regardless of the transmission, this should correspond to receiving 0 information.  Shannon continues:
+        \begin{quote}
+            Evidently the proper correction to apply to the amount of information transmitted is the amount of this information which is missing in the received signal, or alternatively the uncertainty when we have received a signal of what was actually sent. $\dots$ Following this idea the rate of actual transmission, $R$, would be obtained by subtracting from the rate of production (i.e., the entropy of the source) the average rate of conditional entropy.
+                \[ R = H(x) - H(x|y) \]
+        \end{quote}
+    \note{Note the relationship between the rate $R$ of conditional entropy, and Aizawas interpretation of tf-idf.  I have a hunch that it may be useful to consider an IR, IIR, or IS-IR system as a communication model.  The source of information would be the user and their uncertainty, the transponder would be the means of querying the system, and the noise is the user's inability to express their information need to the system (or, equivalently, the system's inability to understand the user's intent, whichever makes you feel better).  The assumption would be that, were the user able to properly express their needs, the IR system would be able to provide the necessary information.  tf-idf then corresponds to the method of presenting the choices with the highest mutual entropy in linear order.  The {\bf IIR-PRP} model is somewhat more elaborate, and seems to take into account {\it rate} more so than just {\bf PRP}, by considering effort and probability of correctness.}
+
+\end{itemize}
+
+\hi{Notes from \cite{lavrenko01}}
+
+\begin{itemize}
+
+\item In this paper the question being addressed is how to approximate a \emph{Relevance Model} without any training data.
+
+\item \hii{Two approaches to determining relevance.}
+    \begin{enumerate}
+        \item ``Forward error:''  Take a query, map it to documents, and snap it to the nearest existing data.
+        \item ``Backward error:'' take the documents, model queries that should hit them, and snap queries to the best fitting models.
+    \end{enumerate}
+
+\item \hii{A Formal Relevance Model}
+        \begin{quote}
+            We use the term \emph{relevance model} to refer to a mechanism that determines the probability $P(w|R)$ of observing a word $w$ in the documents relevant to a particular information need. $\dots$ {\bf Queries and relevant documents are random samples from an underlying relevance model $R$.}
+        \end{quote}
+
+        \note{This model $R$ exists for every ``information need.''}
+
+        \note{ ``Recall $P(w|R)$ is the relative frequency with which we expect to see the word $w$ during repeated independent random sampling of words from all of the relevant documents.''}
+
+\item \hii{The basic formulae}\\
+    \hiii{Suppose we are given a sequence $q_1, \dots, q_k$ of query words, being generated by some model $R$.  What is the probability that the next word is $w$?  This is the attempt to guess the model given a query.}
+
+    \[ P(w|R) \approx \frac{P(w,q_1,\dots,q_k)}{P(q_1,\dots,q_k)} \]
+    
+    They propose two techniques for estimating the joint distribution $P$.  Say we have a set $\M$ of models (distributions), and pick $M$ with probability $P(M)$, then
+    \begin{align*}
+        P(w,q_1,\dots,q_k) 
+           & =  \sum_{M \in \M} P(M)P(w,q_1,\dots,q_k|M) \\
+           & =  \sum_{M \in \M} P(M)P(w|M)\prod_{i=1}^k P(q_i|M)
+    \end{align*}
+    
+    This uses strong independence properties, the next technique assumes only independence between $w$ and the $q_i$:
+
+    \begin{align*}
+        P(w,q_1,\dots,q_k) & = P(w)\prod_{i=1}^k P(q_i|w)  \\
+              & = P(w)\prod_{i=1}^k \sum_{M_i \in \M} P(M_i|w)P(q_i|w)
+    \end{align*}
+
+
 
 \end{itemize}
 
 %
 
+
 \begin{thebibliography}{99}
 
     \bibitem{robertson04}
-        {\it Understanding Inverse Document Frequency:
-            on Theoretical Arguments for IDF} \\
+        \bibtitle{Understanding Inverse Document Frequency:\\
+                    on Theoretical Arguments for IDF} \\
         Robertson, Stephen \\
         Microsoft Research \\
         Journal of Documentation 60
 
     \bibitem{razborov-1}
-        {\it Communication Complexity} \\
+        \bibtitle{Communication Complexity} \\
         Razborov, Alexander \\
         University of Chicago \\
         Steklov Mathematical Institue Moskow \\
 
     \bibitem{jansen09}
-        {\it The Seventeen Theoretical Constructs of Information
-            Searching and Information Retrieval}
+        \bibtitle{The Seventeen Theoretical Constructs of Information\\
+            Searching and Information Retrieval} \\
         Jansen, Bernard \\
         Pennsylvania State University \\
         Rieh, Soo \\
@@ -312,12 +437,30 @@ Notes from \cite{fuhr08}
         Information Science and Technology
 
     \bibitem{fuhr08}
-        {\it A Probability Ranking Principle for
+        \bibtitle{A Probability Ranking Principle for
             Interactive Information Retrieval} \\
         Fuhr, Norbert \\
         University of Duisberg--Essen, Germany \\
         Information Retrieval, Springer 2008
 
+    \bibitem{saracevic07}
+        \bibtitle{Behavior and effects of relevance}\\
+        Tefko Saracevic\\
+        Rutgers University, NJ\\
+        Wiley InterScience 2007
+
+    \bibitem{shannon48}
+        \bibtitle{A Mathematical Theory of Communication} \\
+        Shannon, Claude\\
+        Bell Systems Technical Journal 27\\
+        October, 1948
+
+    \bibitem{lavrenko01}
+        \bibtitle{Relevance-Based Language Models}\\
+        Lavrenko, Victor; Croft, Bruce\\
+        Center for Intelligent Information Retrieval\\
+        University of Massachusetts \\
+        SIGIR`01 September 2001
 
 
 \end{thebibliography}
