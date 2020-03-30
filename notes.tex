@@ -404,6 +404,31 @@
               & = P(w)\prod_{i=1}^k \sum_{M_i \in \M} P(M_i|w)P(q_i|w)
     \end{align*}
 
+\end{itemize}
+
+\hi{Notes from \cite{josang16}}
+
+\begin{itemize}
+
+    \item I didn't go through this article in excrutiating detail, I mostly just wanted to get the giss of ``subjective logic.''  There's a manuscript that can give a better foundation if this seems like it will be a useful tool, but the idea is to allow for uncertainty in probabilistic opinions.  For binary opinions there is a 1-1 mapping with the $\beta$-distribution.
+
+    \item \hii{Relevance.}  This paper is the only one that I've seen that gives a reasonable, general definition of relevance in terms of probability theory.
+    \[ \Psi(x|Y) = |p(x|y) - p(x|\bar y)| \]
+
+    This is actually a nice definition, and has an interesting connection with mutual entropy and insightful derivation \note{(this is my work, I didn't see it in the paper)}.
+    \begin{align*}
+    p(x) & = p(x,y) + p(x,\bar y) \\
+         & = p(x|y)p(y) + p(x|\bar y)p(\bar y) \\
+         & = p(x|y)p(y) + p(x|\bar y)(1-p(y)) \\
+         & = p(y)(p(x|y) - p(x|\bar y)) + p(x|\bar y) \Rightarrow \\
+    |p(x) - p(x|\bar y)| & = p(y)\Psi(x|Y)
+    \end{align*}
+
+    A derivation that I've made, although I'm not sure if it's useful yet, follows.  If we let $R(x,y) = p(x|y)-p(x|\bar y)$ (something like the ``signed relevance''), a few manipulations give:
+    \[ p(x) = \left(\frac{p(x|y) + p(x|\bar y)}{2}\right) + \left(\frac{p(y)-p(\bar y)}{2}\right)R(x,y) \]
+    This may be more enlightening if we can generalize it to random variables...
+
+    Anyways, the main point is that relevance is a measure of how ``not independent'' two entities are, weighted by some factor.  Going from a notion of relevance to information seems challenging, and will considered in the future.
 
 
 \end{itemize}
@@ -461,6 +486,13 @@
         Center for Intelligent Information Retrieval\\
         University of Massachusetts \\
         SIGIR`01 September 2001
+
+    \bibitem{josang16}
+        \bibtitle{Generalising Bayes' Theorem in Subjective Logic}\\
+        Josang, Audun\\
+        University of Oslo\\
+        IEEE MFI Conference\\
+        Open Campus, US Army Research Labs
 
 
 \end{thebibliography}
