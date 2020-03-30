@@ -1,0 +1,35 @@
+\documentclass{article}
+
+\input{new_commands.tex}
+
+\begin{document}
+
+\hi{Notes from Python Source}
+
+\hii{\file{core.turn\_context.py}}
+\begin{itemize}
+
+\item \code{TurnContext}\\
+    Attributes
+    \begin{itemize}
+        \code{adapter}: bot adapter for communication \\
+        \code{activity}: is going on  \\
+        \code{\_responded}: can't be set to false \\
+        \code{\_services}: \note{``Map of services and other values cached for the lifetime of the turn.''} \\
+        \code{\_on\_send\_activities}, \\
+        \code{\_on\_update\_activity}, \\
+        \code{\_on\_delete\_activity}, \\
+    \end{itemize}
+
+\end{itemize}
+
+\hii{\file{core.dialogs.dialog.py}}
+\begin{itemize}
+
+\item \code{Dialog(ABC)}\\
+    Dialogue in an \code{ABC} that has an \code{id} and \code{telemetry\_client} property, and some pretty intuitive methods.  \code{begin\_dialog} starts the dialog.  Once started, it may enter a new dialog, after which it may be resumed with \code{resum\_dialog}.  The typical interaction will be to \code{continu\_dialog} after a user response.  There are also the methods \code{en\_dialog} and \code{repromp\_dialog}.  All mentioned methods accept a \code{DialogContext}, \code{repromp\_dialog} and \code{en\_dialog} take a \code{TurnContext}, and \code{resum\_dialog} deals with the return and reason for resuming.
+
+\end{itemize}
+
+
+\end{document}
