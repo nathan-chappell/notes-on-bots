@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\input{new_commands}
+
+\begin{document}
+
+Here are some ideas I have for ``mini projects.''  These should hopefully guide the learning process to some tangible results that will be applicable (either directly or indirectly through the knowledge gained) to the final project.
+
+\begin{itemize}
+
+\item \hi{Python Documentation Searcher}\\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+    \hii{Task} & Analyze Python Documentation \\
+\hline
+    \hii{Purpose} & Demonstrate understanding of basic indexing algorithms and proecedures \\
+\hline
+    \hii{Specification} & Index the python documentation (a cluster of html files) and enable a keyword search \\
+\hline
+    \hii{Comments} & Develop a simple data structure that will allow for reverse-indexing and quickly compute tf-idf of keywords.  The html files may be preprocessed using pythons standard \verb|http| library.  The inteface could allow you to index some new files, whose results are stored (added to) a json.  A query would take some keywords and compute tf-idf from this data structure.\\
+\hline
+\end{tabular}
+
+\item \hi{Python Documentation Bot}\\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+    \hii{Task} & Create a bot for Interactive IR (IIR)\\
+\hline
+    \hii{Purpose} & Demonstrate basic use of the MS Bot Framework\\
+\hline
+    \hii{Specification} & Create a bot which will enter a dialogue with the user and help them satisfy their information need.\\
+\hline
+    \hii{Comments} & It seems obvious to use the previous project or an existing search capability to iteratively respond to user queries and refinements, but it may be better to abstract this interaction (using dependency injection, for example), and focus on the interaction mechanisms.  This would include maintaining conversation state (not bot state - use the bot as a reducer and keep it clean), and reaction from user input.  The MS ``Cards'' infrastructure would likely be useful to help guide the user (if so desired).  Otherwise, NLP will be required to interact with the user.\\
+\hline
+\end{tabular}
+
+\item \hi{Web-Connected Documentation Bot}\\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+    \hii{Task} & Enhance an IIR bot with network capabilities\\
+\hline
+    \hii{Purpose} & Demonstrate an ability to implement network enhanced behavior of an interactive bot and take advantage of \emph{context}\\
+\hline
+    \hii{Specification} & Take an IIR bot and utilize results or tools obtained from the internet\\
+\hline
+    \hii{Comments} & The bot will never do what google does better than google.  Don't try to be google!  Use google (for example) to enhance the services being provided.  Here is also a good opportunity to utilize \emph{context,} i.e. make use of assumptions about the user that a general purpose search engine could not.  An example would be to prioritize results from stack-overflow or add keywords to searches to google to help obtain better results.\\
+\hline
+\end{tabular}
+
+
+\item \hi{NLP Bot}\\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+    \hii{Task} & Implement NLP into a bot for some purpose\\
+\hline
+    \hii{Purpose} & Gain familiarity and utility with NLP for use with bots\\
+\hline
+    \hii{Specification} & Take a bot of choice and enhance with NLP capabilities\\
+\hline
+    \hii{Comments} & This could be a good opportunity to make the previous bots actually useful, in particular through keyword-expansion or query-categorization.  An example of keyword-expansion would be adding or replacing search keywords with synonyms.  This can be made powerful by making assumptions about the context in which it is being used (for a programmer ``class'' almost certainly doesn't refer to social-status or lectures somewhere).  Query-categorization could be, for example, determining if the user would benefit most from API documentation, an answer on stack-overflow, a tutorial from some website, an nice example on github, et cetera.\\
+\hline
+\end{tabular}
+
+\item \hi{Smart Bot}\\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+    \hii{Task} & Incorporate Machine-Learning into some BOT\\
+\hline
+    \hii{Purpose} & Be a badass\\
+\hline
+    \hii{Specification} & Take a bot of choice and enhance with ML capabilities\\
+\hline
+    \hii{Comments} & The basic idea is to use techniques from ML to enhance the bot.  This may be out of scope, but one idea would be to have a neural network for each user kept in state and have it learn what is most beneficial for the user in question.  This may require feedback from the user, or some smart metrics.  It could also be used to learn which bot-state-transition lead to the quickest end of conversation (assuming that's a good thing), for example.  {\bf I'm not 100\% sure about this, requires more thought}\\
+\hline
+\end{tabular}
+
+
+
+\end{itemize}
+
+\end{document}
+
