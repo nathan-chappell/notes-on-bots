@@ -1,10 +1,12 @@
 \documentclass{article}
 
+\usepackage{verbatim}
+
 \input{new_commands.tex}
 
 \begin{document}
 
-\hi{Notes from Python Source}
+\hi{bobuilder.*.py}
 
 \hii{\file{core.turn\_context.py}}
 \begin{itemize}
@@ -31,5 +33,30 @@
 
 \end{itemize}
 
+\hi{elasticsearch} \\
+
+The book {\it Taming Text} likes java and Apache SOLR, however I'm trying to work on the botbuilder in python and learn about NLP with the NLTK (also python), so something more pythonic seemed in order.  I read a nice little article from here \verb|https://solr-vs-elasticsearch.com/|.  According to this expert, the most principled reason to choose one over the other is (well, used to be) the use of jsons (more jsons $\Rightarrow$ elasticsearch), mostly due to Python's native and trivial handling of jsons.  However, he mentions that elasticsearch (ES) has been diverging from SOLR due to analytics built in.  I guess we'll see.
+
+I guess both are based on some Apache product called ``Lucene,'' which ``is a high-performance, full-featured text search engine library written entirely in Java.''  It seems like basic interaction with either one is through HTTP messages, here is an example from the ES documentation:
+\begin{verbatim}
+curl -XPUT 'http://localhost:9200/twitter/_doc/1?pretty' \
+     -H 'Content-Type: application/json' -d '
+{
+    "user": "kimchy",
+    "post_date": "2009-11-15T13:12:00",
+    "message": "Trying out Elasticsearch, so far so good?"
+}'
+\end{verbatim}
+
+For contrast, here's an example for the SOLR HTTP interface
+
+\begin{verbatim}
+curl "http://localhost:8983/solr/update/extract?&extractOnly=true" \
+     -F "myfile=@FILENAME.doc"
+\end{verbatim}
+
+Note that the \verb|@FILENAME.doc| syntax is curl's way of pointing to a file for content.
+
+There are python bindings for ES, however it's probably more useful to learn about the HTTP interface and then see how the bindings are mapped to it.  (That's my plan as of now).
 
 \end{document}
