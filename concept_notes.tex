@@ -426,6 +426,52 @@
 
 \end{itemize}
 
+\hi{Notes from \cite{tamingtext}}
+
+\begin{itemize}
+
+\item \hii{Faceted Search:} think of ``Amazon filters'' - narrowing down by category.  Users can filter results based on metadata associated with them.
+
+\item \hii{Four Parts of Search}
+    \begin{enumerate}
+        \item \hiii{Indexing}
+        \item \hiii{User Input}
+        \item \hiii{Ranking}
+        \item \hiii{Results Display}
+    \end{enumerate}
+
+\item \hii{Indexing} \\
+    Making a document searchable. Preprocessing $\to$ tokenization $\to$ normalization \term{term, stemming, down-casing} $\to$ analysis \term{stopword removal, synonym expansion, inverted-index}.
+
+\item \hii{User Input} Query types and operators: 
+    \begin{enumerate}
+        \item keyword
+        \item phrase
+        \item boolean ops
+        \item wildcard / regex
+        \item structured (e.g. tag, author, date)
+        \item similar documents \term{relevance feedback}
+        \item guided search \term{faceted browsing}
+    \end{enumerate}
+
+    \term{Query Classification}:
+    \begin{quote}
+        Some engines will even go so far as to try to classify the kind of query used and then choose  different  scoring  parameters  depending  on  the  type  of  query  used.  For instance, it’s common in e-commerce for searches to fall into one of two query types: known item and category/keyword.
+    \end{quote}
+    
+    This is what I had in mind for a good bot/ IIR system.  For programmers, it should determine if the searcher needs an API reference vs. Tutorial vs. Example vs. Explanatory article.  Some examples: \\
+    \begin{tabular}{|l|l|l|}
+    \hline
+    Query & Category & Result \\
+    \hline
+    class & Explanatory & Wikipedia \\
+    python class & reference / example & python language reference \\
+    how to write python class & tutorial & medium, pluralsight, python book\\
+    \hline
+    \end{tabular}
+
+\end{itemize}
+
 %
 
 
@@ -487,6 +533,12 @@
         IEEE MFI Conference\\
         Open Campus, US Army Research Labs
 
+    \bibitem{tamingtext}
+        \bibtitle{Taming Text: How to find, organize, and manipulate it}\\
+        Ingersoll, Grant\\
+        Morton, Thomas\\
+        Farris, Andrew\\
+        Manning Publications, 2013
 
 \end{thebibliography}
 

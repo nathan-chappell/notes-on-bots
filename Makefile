@@ -1,5 +1,5 @@
 
-objs = notes bot_framework_notes
+objs = concept_notes tool_notes
 latex = pdflatex
 
 all: $(addsuffix .pdf,$(objs))
