@@ -29,6 +29,11 @@ NodePredicate = Callable[[NodeID,'Graph'],bool]
 # minimum degree to make a node achieve a higher relevance status
 relevance_degree = 5
 
+stopwords: Set[str] = {
+    'of',
+    'and'
+}
+
 class Node:
   N: Neighborhood
   attrs: Attributes
@@ -121,7 +126,8 @@ class JsonGraph(Graph):
     for k in self.data.keys():
       stems += stem_re.findall(k)
     self.stems = list(set(filter(
-      lambda s: self.json_text.count(s) > relevance_degree,
+      lambda s: self.json_text.count(s) > relevance_degree and
+                s.lower() not in stopwords,
       stems)))
 
   def build_graph(self) -> None:

@@ -8,46 +8,6 @@ strict digraph 1 {
   }
   
   
-  subgraph cluster_Implementations {
-    label=Implementations
-    node [style=filled, fillcolor=gainsboro]
-    Implementations [shape=diamond]
-    ImplementationsOf_Item [shape=box]
-    ImplementationsOf_Action [shape=box]
-    ImplementationsOf_ISelectAction [shape=box]
-    ImplementationsOf_Element [shape=box]
-    ImplementationsOf_ToggleableItem [shape=box]
-    ImplementationsOf_Inline [shape=box]
-    ImplementationsOf_Input [shape=box]
-  }
-  
-  
-  subgraph cluster_Style {
-    label=Style
-    node [style=filled, fillcolor=gainsboro]
-    Style [shape=diamond]
-    ActionStyle [shape=box]
-    ChoiceInputStyle [shape=box]
-    ContainerStyle [shape=box]
-    ImageStyle [shape=box]
-    TextInputStyle [shape=box]
-  }
-  
-  
-  subgraph cluster_Of {
-    label=Of
-    node [style=filled, fillcolor=gainsboro]
-    Of [shape=diamond]
-    ImplementationsOf_Item [shape=box]
-    ImplementationsOf_Action [shape=box]
-    ImplementationsOf_ISelectAction [shape=box]
-    ImplementationsOf_Element [shape=box]
-    ImplementationsOf_ToggleableItem [shape=box]
-    ImplementationsOf_Inline [shape=box]
-    ImplementationsOf_Input [shape=box]
-  }
-  
-  
   subgraph cluster_Extendable {
     label=Extendable
     node [style=filled, fillcolor=gainsboro]
@@ -72,34 +32,6 @@ strict digraph 1 {
   }
   
   
-  subgraph cluster_Action {
-    label=Action
-    node [style=filled, fillcolor=gainsboro]
-    Action [shape=diamond]
-    Action_OpenUrl [shape=box]
-    Action_ShowCard [shape=box]
-    Action_Submit [shape=box]
-    Action_ToggleVisibility [shape=box]
-    ActionSet [shape=box]
-    ActionStyle [shape=box]
-    ImplementationsOf_Action [shape=box]
-    ImplementationsOf_ISelectAction [shape=box]
-    Extendable_Action [shape=box]
-  }
-  
-  
-  subgraph cluster_Set {
-    label=Set
-    node [style=filled, fillcolor=gainsboro]
-    Set [shape=diamond]
-    ActionSet [shape=box]
-    ColumnSet [shape=box]
-    FactSet [shape=box]
-    ImageSet [shape=box]
-    Input_ChoiceSet [shape=box]
-  }
-  
-  
   subgraph cluster_Input {
     label=Input
     node [style=filled, fillcolor=gainsboro]
@@ -116,101 +48,147 @@ strict digraph 1 {
     ImplementationsOf_Input [shape=box]
     Extendable_Input [shape=box]
   }
-  //Implementations
-  Implementations -> ImplementationsOf_Input
-  Implementations -> ImplementationsOf_ToggleableItem
-  Implementations -> ImplementationsOf_ISelectAction
-  Implementations -> ImplementationsOf_Action
-  Implementations -> ImplementationsOf_Element
-  Implementations -> ImplementationsOf_Inline
-  Implementations -> ImplementationsOf_Item
-  //Element
-  Element -> TargetElement
-  Element -> BlockElementHeight
-  Element -> Extendable_Element
-  Element -> ImplementationsOf_Element
+  
+  
+  subgraph cluster_Action {
+    label=Action
+    node [style=filled, fillcolor=gainsboro]
+    Action [shape=diamond]
+    Action_OpenUrl [shape=box]
+    Action_ShowCard [shape=box]
+    Action_Submit [shape=box]
+    Action_ToggleVisibility [shape=box]
+    ActionSet [shape=box]
+    ActionStyle [shape=box]
+    ImplementationsOf_Action [shape=box]
+    ImplementationsOf_ISelectAction [shape=box]
+    Extendable_Action [shape=box]
+  }
+  
+  
+  subgraph cluster_Style {
+    label=Style
+    node [style=filled, fillcolor=gainsboro]
+    Style [shape=diamond]
+    ActionStyle [shape=box]
+    ChoiceInputStyle [shape=box]
+    ContainerStyle [shape=box]
+    ImageStyle [shape=box]
+    TextInputStyle [shape=box]
+  }
+  
+  
+  subgraph cluster_Set {
+    label=Set
+    node [style=filled, fillcolor=gainsboro]
+    Set [shape=diamond]
+    ActionSet [shape=box]
+    ColumnSet [shape=box]
+    FactSet [shape=box]
+    ImageSet [shape=box]
+    Input_ChoiceSet [shape=box]
+  }
+  
+  
+  subgraph cluster_Implementations {
+    label=Implementations
+    node [style=filled, fillcolor=gainsboro]
+    Implementations [shape=diamond]
+    ImplementationsOf_Item [shape=box]
+    ImplementationsOf_Action [shape=box]
+    ImplementationsOf_ISelectAction [shape=box]
+    ImplementationsOf_Element [shape=box]
+    ImplementationsOf_ToggleableItem [shape=box]
+    ImplementationsOf_Inline [shape=box]
+    ImplementationsOf_Input [shape=box]
+  }
   //Block
   Block -> BlockElementHeight
   Block -> TextBlock
   Block -> RichTextBlock
-  //Style
-  Style -> TextInputStyle
-  Style -> ImageStyle
-  Style -> ChoiceInputStyle
-  Style -> ActionStyle
-  Style -> ContainerStyle
-  //Item
-  Item -> Extendable_ToggleableItem
-  Item -> ImplementationsOf_Item
-  Item -> Extendable_Item
-  Item -> ImplementationsOf_ToggleableItem
-  //Alignment
-  Alignment -> VerticalAlignment
-  Alignment -> HorizontalAlignment
-  Alignment -> VerticalContentAlignment
-  //Of
-  Of -> ImplementationsOf_Input
-  Of -> ImplementationsOf_ToggleableItem
-  Of -> ImplementationsOf_ISelectAction
-  Of -> ImplementationsOf_Action
-  Of -> ImplementationsOf_Element
-  Of -> ImplementationsOf_Inline
-  Of -> ImplementationsOf_Item
   //Extendable
-  Extendable -> Extendable_ToggleableItem
-  Extendable -> Extendable_Input
   Extendable -> Extendable_Action
   Extendable -> Extendable_Element
+  Extendable -> Extendable_Input
   Extendable -> Extendable_Item
-  //Text
-  Text -> TextInputStyle
-  Text -> RichTextBlock
-  Text -> Input_Text
-  Text -> TextBlock
-  Text -> TextRun
+  Extendable -> Extendable_ToggleableItem
   //Choice
+  Choice -> Input_Choice
   Choice -> Input_ChoiceSet
   Choice -> ChoiceInputStyle
-  Choice -> Input_Choice
-  //Action
-  Action -> Action_ToggleVisibility
-  Action -> Action_OpenUrl
-  Action -> Action_Submit
-  Action -> ImplementationsOf_ISelectAction
-  Action -> ActionSet
-  Action -> ActionStyle
-  Action -> ImplementationsOf_Action
-  Action -> Extendable_Action
-  Action -> Action_ShowCard
-  //Font
-  Font -> FontSize
-  Font -> FontType
-  Font -> FontWeight
-  //Set
-  Set -> ColumnSet
-  Set -> Input_ChoiceSet
-  Set -> ActionSet
-  Set -> ImageSet
-  Set -> FactSet
-  //Image
-  Image -> ImageSize
-  Image -> BackgroundImage
-  Image -> ImageStyle
-  Image -> ImageSet
-  Image -> Image
-  Image -> ImageFillMode
+  //Text
+  Text -> TextRun
+  Text -> Input_Text
+  Text -> TextBlock
+  Text -> RichTextBlock
+  Text -> TextInputStyle
   //Input
-  Input -> ImplementationsOf_Input
-  Input -> Input_Time
-  Input -> TextInputStyle
-  Input -> Input_ChoiceSet
-  Input -> Input_Date
-  Input -> Input_Toggle
-  Input -> Input_Text
-  Input -> ChoiceInputStyle
   Input -> Input_Choice
   Input -> Input_Number
+  Input -> Input_Toggle
+  Input -> Input_ChoiceSet
+  Input -> Input_Text
   Input -> Extendable_Input
+  Input -> Input_Time
+  Input -> ImplementationsOf_Input
+  Input -> ChoiceInputStyle
+  Input -> TextInputStyle
+  Input -> Input_Date
+  //Image
+  Image -> ImageFillMode
+  Image -> ImageSet
+  Image -> ImageStyle
+  Image -> Image
+  Image -> BackgroundImage
+  Image -> ImageSize
+  //Font
+  Font -> FontType
+  Font -> FontWeight
+  Font -> FontSize
+  //Action
+  Action -> Action_ShowCard
+  Action -> ImplementationsOf_Action
+  Action -> Extendable_Action
+  Action -> Action_OpenUrl
+  Action -> ImplementationsOf_ISelectAction
+  Action -> ActionStyle
+  Action -> Action_Submit
+  Action -> Action_ToggleVisibility
+  Action -> ActionSet
+  //Style
+  Style -> ActionStyle
+  Style -> ImageStyle
+  Style -> ContainerStyle
+  Style -> ChoiceInputStyle
+  Style -> TextInputStyle
+  //Item
+  Item -> Extendable_Item
+  Item -> ImplementationsOf_Item
+  Item -> Extendable_ToggleableItem
+  Item -> ImplementationsOf_ToggleableItem
+  //Set
+  Set -> Input_ChoiceSet
+  Set -> ColumnSet
+  Set -> ImageSet
+  Set -> ActionSet
+  Set -> FactSet
+  //Element
+  Element -> TargetElement
+  Element -> ImplementationsOf_Element
+  Element -> BlockElementHeight
+  Element -> Extendable_Element
+  //Implementations
+  Implementations -> ImplementationsOf_Action
+  Implementations -> ImplementationsOf_Inline
+  Implementations -> ImplementationsOf_ISelectAction
+  Implementations -> ImplementationsOf_Element
+  Implementations -> ImplementationsOf_Item
+  Implementations -> ImplementationsOf_ToggleableItem
+  Implementations -> ImplementationsOf_Input
+  //Alignment
+  Alignment -> VerticalContentAlignment
+  Alignment -> HorizontalAlignment
+  Alignment -> VerticalAlignment
   //Action_OpenUrl
   //Action_ShowCard
   //Action_Submit
