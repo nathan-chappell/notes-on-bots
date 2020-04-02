@@ -470,6 +470,40 @@
     \hline
     \end{tabular}
 
+\item \hii{Precision/ Recall} \emph{Precision:} how many of the returned documents are relevant, \emph{Recall:} how many of the relevant documents are returned.
+
+\item \hii{Evaluation/ Training}\\
+    \begin{itemize}
+        \item \hiii{Ad Hoc} - various people informally evaluate the system
+        \item \hiii{Focus Group}
+        \item \hiii{TREC/ Automated}
+        \item \hiii{Query Log Analysis}
+        \item \hiii{A/B Testing} different users get results from different methods
+    \end{itemize}
+
+\item \hii{Analysis Techniques for Indexing}\\
+    \begin{itemize}
+    \item \hiii{Stopword Removal}
+    \item \hiii{Stemming}
+    \item \hiii{Synonym Expansion}
+    \item \hiii{Lowercasing Tokens}
+    \item \hiii{External Knowledge}
+    \end{itemize}
+
+\item \hii{$N$-gram Analysis} Keeping statistics on $n$ letters or words at a time.  Idea: use stopwords in $n$-gram analysis and remove them for further indexing.
+
+\item \hii{Query Performance Improvement}\\
+    Transparency: the system should help users make better queries.  A priori knowledge: point first to what experts think is best.  Step-backed precision: AND before OR, automatic phrase detection (\emph{slop-factor:} score of how likely something is to be a phrase).  \emph{Relevance Feedback:} use the most relevant documents to create a new query (possibly weighted differently).
+
+\item \hii{Alternative Scoring Methods and Models}\\
+    \begin{enumerate}
+        \item Language modeling: which document most likely generated this query?
+        \item Latent semantic indexing: document SVD
+        \item Machine Learning: learn the relevance function
+        \item Alternate: Microsoft OKAPI BM25 (Robertson-Sparck Jones)
+        \item (See Modern IR for formalisms)
+    \end{enumerate}
+
 \end{itemize}
 
 %

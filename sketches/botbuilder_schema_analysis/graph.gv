@@ -1,0 +1,212 @@
+strict digraph 1 {
+  rankdir=LR
+  
+  subgraph highIndegree {
+    label=highIndegree
+    node [style=filled, fillcolor=darkkhaki]
+    CardAction [shape=box]
+    CardImage [shape=box]
+    ChannelAccount [shape=box]
+    MediaUrl [shape=box]
+    ThumbnailUrl [shape=box]
+  }
+  
+  
+  subgraph cluster_Card {
+    label=Card
+    node [style=filled, fillcolor=gainsboro]
+    Card [shape=diamond]
+    AnimationCard [shape=box]
+    AudioCard [shape=box]
+    BasicCard [shape=box]
+    CardAction [shape=box]
+    CardImage [shape=box]
+    HeroCard [shape=box]
+    MediaCard [shape=box]
+    OAuthCard [shape=box]
+    ReceiptCard [shape=box]
+    SigninCard [shape=box]
+    ThumbnailCard [shape=box]
+    VideoCard [shape=box]
+  }
+  
+  
+  subgraph cluster_Response {
+    label=Response
+    node [style=filled, fillcolor=gainsboro]
+    Response [shape=diamond]
+    ConversationResourceResponse [shape=box]
+    ErrorResponse [shape=box]
+    ErrorResponseException [shape=box]
+    ResourceResponse [shape=box]
+    TokenExchangeInvokeResponse [shape=box]
+    TokenResponse [shape=box]
+  }
+  
+  
+  subgraph cluster_Conversation {
+    label=Conversation
+    node [style=filled, fillcolor=gainsboro]
+    Conversation [shape=diamond]
+    ConversationAccount [shape=box]
+    ConversationMembers [shape=box]
+    ConversationParameters [shape=box]
+    ConversationReference [shape=box]
+    ConversationResourceResponse [shape=box]
+    ConversationsResult [shape=box]
+  }
+  //Media
+  Media -> MediaCard
+  Media -> MediaUrl
+  Media -> MediaEventValue
+  //Error
+  Error -> ErrorResponseException
+  Error -> Error
+  Error -> ErrorResponse
+  Error -> InnerHttpError
+  //Thumbnail
+  Thumbnail -> ThumbnailUrl
+  Thumbnail -> ThumbnailCard
+  //Attachment
+  Attachment -> AttachmentData
+  Attachment -> AttachmentView
+  Attachment -> AttachmentInfo
+  Attachment -> Attachment
+  //Card
+  Card -> AudioCard
+  Card -> OAuthCard
+  Card -> AnimationCard
+  Card -> ThumbnailCard
+  Card -> CardImage
+  Card -> SigninCard
+  Card -> MediaCard
+  Card -> CardAction
+  Card -> ReceiptCard
+  Card -> BasicCard
+  Card -> HeroCard
+  Card -> VideoCard
+  //Account
+  Account -> ChannelAccount
+  Account -> ConversationAccount
+  //Channel
+  Channel -> ChannelAccount
+  //Response
+  Response -> TokenResponse
+  Response -> ErrorResponse
+  Response -> TokenExchangeInvokeResponse
+  Response -> ResourceResponse
+  Response -> ErrorResponseException
+  Response -> ConversationResourceResponse
+  //Conversation
+  Conversation -> ConversationReference
+  Conversation -> ConversationsResult
+  Conversation -> ConversationMembers
+  Conversation -> ConversationAccount
+  Conversation -> ConversationParameters
+  Conversation -> ConversationResourceResponse
+  //Url
+  Url -> MediaUrl
+  Url -> ThumbnailUrl
+  //Action
+  Action -> CardAction
+  Action -> SemanticAction
+  Action -> SuggestedActions
+  //Activity
+  Activity -> SemanticAction
+  Activity -> SuggestedActions
+  Activity -> MessageReaction
+  Activity -> ConversationReference
+  Activity -> ChannelAccount
+  Activity -> Attachment
+  Activity -> TextHighlight
+  Activity -> Entity
+  Activity -> ConversationAccount
+  //AnimationCard
+  AnimationCard -> CardAction
+  AnimationCard -> MediaUrl
+  AnimationCard -> ThumbnailUrl
+  //AttachmentData
+  //AttachmentInfo
+  AttachmentInfo -> AttachmentView
+  //AttachmentView
+  //AudioCard
+  AudioCard -> CardAction
+  AudioCard -> MediaUrl
+  AudioCard -> ThumbnailUrl
+  //BasicCard
+  BasicCard -> CardAction
+  BasicCard -> CardImage
+  //CardAction
+  //CardImage
+  CardImage -> CardAction
+  //ChannelAccount
+  //ConversationAccount
+  //ConversationMembers
+  ConversationMembers -> ChannelAccount
+  //ConversationParameters
+  ConversationParameters -> ChannelAccount
+  ConversationParameters -> Activity
+  //ConversationReference
+  ConversationReference -> ChannelAccount
+  ConversationReference -> ConversationAccount
+  //ConversationResourceResponse
+  //ConversationsResult
+  ConversationsResult -> ConversationMembers
+  //ExpectedReplies
+  ExpectedReplies -> Activity
+  //Entity
+  //ErrorResponse
+  ErrorResponse -> Error
+  //ErrorResponseException
+  //Fact
+  //GeoCoordinates
+  //HeroCard
+  HeroCard -> CardAction
+  HeroCard -> CardImage
+  //InnerHttpError
+  //MediaCard
+  MediaCard -> CardAction
+  MediaCard -> MediaUrl
+  MediaCard -> ThumbnailUrl
+  //MediaEventValue
+  //MediaUrl
+  //Mention
+  Mention -> ChannelAccount
+  //MessageReaction
+  //OAuthCard
+  OAuthCard -> CardAction
+  //PagedMembersResult
+  PagedMembersResult -> ChannelAccount
+  //Place
+  //ReceiptCard
+  ReceiptCard -> Fact
+  ReceiptCard -> CardAction
+  ReceiptCard -> ReceiptItem
+  //ReceiptItem
+  ReceiptItem -> CardAction
+  ReceiptItem -> CardImage
+  //ResourceResponse
+  //SemanticAction
+  //SigninCard
+  SigninCard -> CardAction
+  //SuggestedActions
+  SuggestedActions -> CardAction
+  //TextHighlight
+  //Thing
+  //ThumbnailCard
+  ThumbnailCard -> CardAction
+  ThumbnailCard -> CardImage
+  //ThumbnailUrl
+  //TokenExchangeInvokeRequest
+  //TokenExchangeInvokeResponse
+  //TokenExchangeState
+  TokenExchangeState -> ConversationReference
+  //TokenRequest
+  //TokenResponse
+  //Transcript
+  Transcript -> Activity
+  //VideoCard
+  VideoCard -> CardAction
+  VideoCard -> MediaUrl
+  VideoCard -> ThumbnailUrl
+}

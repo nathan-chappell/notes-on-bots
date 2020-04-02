@@ -1,0 +1,385 @@
+{
+  "Activity" :
+  {
+    "type": "str",
+    "id": "str",
+    "timestamp": "iso-8601",
+    "local_timestamp": "iso-8601",
+    "local_timezone": "str",
+    "service_url": "str",
+    "channel_id": "str",
+    "from_property": "ChannelAccount",
+    "conversation": "ConversationAccount",
+    "recipient": "ChannelAccount",
+    "text_format": "str",
+    "attachment_layout": "str",
+    "members_added": ["ChannelAccount"],
+    "members_removed": ["ChannelAccount"],
+    "reactions_added": ["MessageReaction"],
+    "reactions_removed": ["MessageReaction"],
+    "topic_name": "str",
+    "history_disclosed": "bool",
+    "locale": "str",
+    "text": "str",
+    "speak": "str",
+    "input_hint": "str",
+    "summary": "str",
+    "suggested_actions": "SuggestedActions",
+    "attachments": ["Attachment"],
+    "entities": ["Entity"],
+    "channel_data": "object",
+    "action": "str",
+    "reply_to_id": "str",
+    "label": "str",
+    "value_type": "str",
+    "value": "object",
+    "name": "str",
+    "relates_to": "ConversationReference",
+    "code": "str",
+    "expiration": "iso-8601",
+    "importance": "str",
+    "delivery_mode": "str",
+    "listen_for": ["str"],
+    "text_highlights": ["TextHighlight"],
+    "semantic_action": "SemanticAction",
+    "caller_id": "str"    
+  },
+  "AnimationCard" :
+  {
+    "title": "str",
+    "subtitle": "str",
+    "text": "str",
+    "image": "ThumbnailUrl",
+    "media": ["MediaUrl"],
+    "buttons": ["CardAction"],
+    "shareable": "bool",
+    "autoloop": "bool",
+    "autostart": "bool",
+    "aspect": "str",
+    "duration": "str",
+    "value": "object"    
+  },
+  "Attachment" :
+  {
+    "content_type": "str",
+    "content_url": "str",
+    "content": "object",
+    "name": "str",
+    "thumbnail_url": "str"    
+  },
+  "AttachmentData" :
+  {
+    "type": "str",
+    "name": "str",
+    "original_base64": "bytearray",
+    "thumbnail_base64": "bytearray"    
+  },
+  "AttachmentInfo" :
+  {
+    "name": "str",
+    "type": "str",
+    "views": ["AttachmentView"]    
+  },
+  "AttachmentView" :
+  {
+    "view_id": "str",
+    "size": "int"    
+  },
+  "AudioCard" :
+  {
+    "title": "str",
+    "subtitle": "str",
+    "text": "str",
+    "image": "ThumbnailUrl",
+    "media": ["MediaUrl"],
+    "buttons": ["CardAction"],
+    "shareable": "bool",
+    "autoloop": "bool",
+    "autostart": "bool",
+    "aspect": "str",
+    "duration": "str",
+    "value": "object"    
+  },
+  "BasicCard" :
+  {
+    "title": "str",
+    "subtitle": "str",
+    "text": "str",
+    "images": ["CardImage"],
+    "buttons": ["CardAction"],
+    "tap": "CardAction"    
+  },
+  "CardAction" :
+  {
+    "type": "str",
+    "title": "str",
+    "image": "str",
+    "text": "str",
+    "display_text": "str",
+    "value": "object",
+    "channel_data": "object"    
+  },
+  "CardImage" :
+  {
+    "url": "str",
+    "alt": "str",
+    "tap": "CardAction"    
+  },
+  "ChannelAccount" :
+  {
+    "id": "str",
+    "name": "str",
+    "aad_object_id": "str",
+    "role": "str"    
+  },
+  "ConversationAccount" :
+  {
+    "is_group": "bool",
+    "conversation_type": "str",
+    "id": "str",
+    "name": "str",
+    "aad_object_id": "str",
+    "role": "str",
+    "tenant_id": "str",
+    "properties": "object"    
+  },
+  "ConversationMembers" :
+  {
+    "id": "str",
+    "members": ["ChannelAccount"]    
+  },
+  "ConversationParameters" :
+  {
+    "is_group": "bool",
+    "bot": "ChannelAccount",
+    "members": ["ChannelAccount"],
+    "topic_name": "str",
+    "activity": "Activity",
+    "channel_data": "object",
+    "tenant_id": "str"    
+  },
+  "ConversationReference" :
+  {
+    "activity_id": "str",
+    "user": "ChannelAccount",
+    "bot": "ChannelAccount",
+    "conversation": "ConversationAccount",
+    "channel_id": "str",
+    "service_url": "str"    
+  },
+  "ConversationResourceResponse" :
+  {
+    "activity_id": "str",
+    "service_url": "str",
+    "id": "str"    
+  },
+  "ConversationsResult" :
+  {
+    "continuation_token": "str",
+    "conversations": ["ConversationMembers"]    
+  },
+  "ExpectedReplies" :
+  {"activities": ["Activity"]},
+  "Entity" :
+  {"type": "str"},
+  "Error" :
+  {
+    "code": "str",
+    "message": "str",
+    "inner_http_error": "InnerHttpError"    
+  },
+  "ErrorResponse" :
+  {"error": "Error"},
+  "ErrorResponseException" : {},
+  "Fact" :
+  {
+    "key": "str",
+    "value": "str"    
+  },
+  "GeoCoordinates" :
+  {
+    "elevation": "float",
+    "latitude": "float",
+    "longitude": "float",
+    "type": "str",
+    "name": "str"    
+  },
+  "HeroCard" :
+  {
+    "title": "str",
+    "subtitle": "str",
+    "text": "str",
+    "images": ["CardImage"],
+    "buttons": ["CardAction"],
+    "tap": "CardAction"    
+  },
+  "InnerHttpError" :
+  {
+    "status_code": "int",
+    "body": "object"    
+  },
+  "MediaCard" :
+  {
+    "title": "str",
+    "subtitle": "str",
+    "text": "str",
+    "image": "ThumbnailUrl",
+    "media": ["MediaUrl"],
+    "buttons": ["CardAction"],
+    "shareable": "bool",
+    "autoloop": "bool",
+    "autostart": "bool",
+    "aspect": "str",
+    "duration": "str",
+    "value": "object"    
+  },
+  "MediaEventValue" :
+  {"card_value": "object"},
+  "MediaUrl" :
+  {
+    "url": "str",
+    "profile": "str"    
+  },
+  "Mention" :
+  {
+    "mentioned": "ChannelAccount",
+    "text": "str",
+    "type": "str"    
+  },
+  "MessageReaction" :
+  {"type": "str"},
+  "OAuthCard" :
+  {
+    "text": "str",
+    "connection_name": "str",
+    "buttons": ["CardAction"],
+    "token_exchange_resource": "object"    
+  },
+  "PagedMembersResult" :
+  {
+    "continuation_token": "str",
+    "members": ["ChannelAccount"]    
+  },
+  "Place" :
+  {
+    "address": "object",
+    "geo": "object",
+    "has_map": "object",
+    "type": "str",
+    "name": "str"    
+  },
+  "ReceiptCard" :
+  {
+    "title": "str",
+    "facts": ["Fact"],
+    "items": ["ReceiptItem"],
+    "tap": "CardAction",
+    "total": "str",
+    "tax": "str",
+    "vat": "str",
+    "buttons": ["CardAction"]    
+  },
+  "ReceiptItem" :
+  {
+    "title": "str",
+    "subtitle": "str",
+    "text": "str",
+    "image": "CardImage",
+    "price": "str",
+    "quantity": "str",
+    "tap": "CardAction"    
+  },
+  "ResourceResponse" :
+  {"id": "str"},
+  "SemanticAction" :
+  {
+    "id": "str",
+    "entities": "{Entity},",
+    "state": "str"    
+  },
+  "SigninCard" :
+  {
+    "text": "str",
+    "buttons": ["CardAction"]    
+  },
+  "SuggestedActions" :
+  {
+    "to": ["str"],
+    "actions": ["CardAction"]    
+  },
+  "TextHighlight" :
+  {
+    "text": "str",
+    "occurrence": "int"    
+  },
+  "Thing" :
+  {
+    "type": "str",
+    "name": "str"    
+  },
+  "ThumbnailCard" :
+  {
+    "title": "str",
+    "subtitle": "str",
+    "text": "str",
+    "images": ["CardImage"],
+    "buttons": ["CardAction"],
+    "tap": "CardAction"    
+  },
+  "ThumbnailUrl" :
+  {
+    "url": "str",
+    "alt": "str"    
+  },
+  "TokenExchangeInvokeRequest" :
+  {
+    "id": "str",
+    "connection_name": "str",
+    "token": "str",
+    "properties": "{object},"    
+  },
+  "TokenExchangeInvokeResponse" :
+  {
+    "id": "str",
+    "connection_name": "str",
+    "failure_detail": "str",
+    "properties": "{object},"    
+  },
+  "TokenExchangeState" :
+  {
+    "connection_name": "str",
+    "conversation": "ConversationReference",
+    "relates_to": "ConversationReference",
+    "bot_url": "str",
+    "ms_app_id": "str"    
+  },
+  "TokenRequest" :
+  {
+    "provider": "str",
+    "settings": "{object},"    
+  },
+  "TokenResponse" :
+  {
+    "connection_name": "str",
+    "token": "str",
+    "expiration": "str",
+    "channel_id": "str"    
+  },
+  "Transcript" :
+  {"activities": ["Activity"]},
+  "VideoCard" :
+  {
+    "title": "str",
+    "subtitle": "str",
+    "text": "str",
+    "image": "ThumbnailUrl",
+    "media": ["MediaUrl"],
+    "buttons": ["CardAction"],
+    "shareable": "bool",
+    "autoloop": "bool",
+    "autostart": "bool",
+    "aspect": "str",
+    "duration": "str",
+    "value": "object"    
+  }
+}
