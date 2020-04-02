@@ -5,17 +5,29 @@
 
 import re
 import json
-from pprint import pprint as pp
+import sys
+import os
 from typing import Callable, Dict, List, Any, Tuple, Optional, Set
 from typing_extensions import Literal
 
+if len(sys.argv) != 2:
+  print('usage: python3 analyze.py filename')
+  sys.exit(-1)
+
+filename: str = sys.argv[1]
+
 indegree_key = 'indegree'
+stem_re = re.compile(r'[A-Z][a-z]*')
 
 Json = Dict[str,Any]
 Attributes = Dict[str,Any]
 NodeID = str
 GraphID = str
 Neighborhood = Set[NodeID]
+NodePredicate = Callable[[NodeID,'Graph'],bool]
+
+# minimum degree to make a node achieve a higher relevance status
+relevance_degree = 5
 
 class Node:
   N: Neighborhood
@@ -84,19 +96,16 @@ def add_dot_attr(node: Node, k:str, v:str):
     node.attrs['dot_attrs'] = {}
   node.attrs['dot_attrs'][k] = v
 
-
 class JsonGraph(Graph):
   filename: str
-  stem_min_count: int
 
   json_text: str
   data: Json
   stems: List[str]
 
-  def __init__(self, filename: str, stem_min_count: int = 5):
+  def __init__(self, filename: str):
     super().__init__()
     self.filename = filename
-    self.stem_min_count = stem_min_count
     self.read()
     self.calc_stems()
     self.build_graph()
@@ -110,9 +119,9 @@ class JsonGraph(Graph):
   def calc_stems(self) -> None:
     stems = []
     for k in self.data.keys():
-      stems += re.findall(r'[A-Z][a-z]*',k)
+      stems += stem_re.findall(k)
     self.stems = list(set(filter(
-      lambda s: self.json_text.count(s) > self.stem_min_count,
+      lambda s: self.json_text.count(s) > relevance_degree,
       stems)))
 
   def build_graph(self) -> None:
@@ -121,7 +130,9 @@ class JsonGraph(Graph):
     for s in self.stems:
       node = Node(self)
       # edges
-      node.N = set([k for k in self.data if s in k])
+      node.N = set([k for k in self.data if s in stem_re.findall(k)])
+      if len(node.N) < 3: continue # worthless stem
+      node.attrs['stem'] = True
       add_dot_attr(node,'shape','diamond')
       self.add_node(s,node)
 
@@ -132,15 +143,16 @@ class JsonGraph(Graph):
       else:
         node = Node(self)
         self.add_node(k,node)
+      node.attrs['stem'] = False
       add_dot_attr(node,'shape','box')
       # edges
-      for field,ftype in self.data[k].items():
-        if type(ftype) == type([]):
-          ftype = ftype[0]
-        if ftype in self.data:
-          node.N.add(ftype)
-
-NodePredicate = Callable[[NodeID,Graph],bool]
+      try:
+        for field,ftype in self.data[k].items():
+          if type(ftype) == type([]):
+            ftype = ftype[0]
+          if ftype in self.data:
+            node.N.add(ftype)
+      except: pass
 
 def indegree_predicate(degree: int) -> NodePredicate:
   def p(nodeID: NodeID, graph: Graph):
@@ -151,7 +163,14 @@ def indegree_predicate(degree: int) -> NodePredicate:
     return attrs[indegree_key] >= degree
   return p
 
-def stem_predicate(stem: str) -> NodePredicate:
+def outdegree_stem_predicate(degree: int) -> NodePredicate:
+  def p(nodeID: NodeID, graph: Graph):
+    graph.assert_node(nodeID)
+    node = graph.nodes[nodeID]
+    return node.attrs['stem'] and len(node.N) >= degree
+  return p
+
+def stem_substr_predicate(stem: str) -> NodePredicate:
   def p(nodeID: NodeID, graph: Graph):
     graph.assert_node(nodeID)
     return stem in nodeID
@@ -226,7 +245,15 @@ class DotFormatter:
               list(DotFormatter.fedge(l,r) for r in graph.nodes[l].N)
             ) for l in graph.nodes)
 
+  class Decorators:
+    @staticmethod
+    def fescape(f):
+      def escaped(*args,**kwargs):
+        return f(*args,**kwargs).translate({ord('.'):'_'})
+      return escaped
+
   @staticmethod
+  @Decorators.fescape
   def fgraph(graph: Graph, subgraphs: List[Subgraph] = []) -> str:
     br = '\n' + ' '*2
     open_graph = "strict digraph " + graph.name + " {" + br
@@ -239,6 +266,8 @@ class DotFormatter:
 
 if __name__ == '__main__':
 
+  jsonGraph: JsonGraph = JsonGraph(filename)
+
   stem_node_attrs = {
       'style':'filled',
       'fillcolor':'gainsboro',
@@ -248,18 +277,27 @@ if __name__ == '__main__':
       'fillcolor':'darkkhaki',
   }
 
-  subgraph_terms = [
-    'Card',
-    'Response',
-    'Conversation',
+  main_stem_predicate: NodePredicate
+  main_stem_predicate = outdegree_stem_predicate(relevance_degree)
+
+  subgraph_terms: List[str] = [
+      nodeID for nodeID in jsonGraph.nodes 
+             if main_stem_predicate(nodeID,jsonGraph)
   ]
 
-  jsonGraph: JsonGraph = JsonGraph('schema_models.json')
   subgraphs: List[Subgraph] = [ 
-      Subgraph('highIndegree', jsonGraph, indegree_predicate(5), 
-                  indegree_node_attrs, cluster=False)] +  [
-      Subgraph(term, jsonGraph, stem_predicate(term), stem_node_attrs)
+      Subgraph('highIndegree', 
+                jsonGraph, 
+                indegree_predicate(relevance_degree), 
+                indegree_node_attrs, 
+                cluster=False)
+    ] + [
+      Subgraph(term, jsonGraph, stem_substr_predicate(term), stem_node_attrs)
       for term in subgraph_terms
     ]
+  
+  with open('graph.gv','w') as file:
+    print(DotFormatter.fgraph(jsonGraph, subgraphs),file=file)
 
-  print(DotFormatter.fgraph(jsonGraph, subgraphs))
+  os.system(f'dot -Tpng graph.gv > {filename.replace("json","png")}')
+

@@ -4,209 +4,266 @@ strict digraph 1 {
   subgraph highIndegree {
     label=highIndegree
     node [style=filled, fillcolor=darkkhaki]
-    CardAction [shape=box]
-    CardImage [shape=box]
-    ChannelAccount [shape=box]
-    MediaUrl [shape=box]
-    ThumbnailUrl [shape=box]
+    
   }
   
   
-  subgraph cluster_Card {
-    label=Card
+  subgraph cluster_Implementations {
+    label=Implementations
     node [style=filled, fillcolor=gainsboro]
-    Card [shape=diamond]
-    AnimationCard [shape=box]
-    AudioCard [shape=box]
-    BasicCard [shape=box]
-    CardAction [shape=box]
-    CardImage [shape=box]
-    HeroCard [shape=box]
-    MediaCard [shape=box]
-    OAuthCard [shape=box]
-    ReceiptCard [shape=box]
-    SigninCard [shape=box]
-    ThumbnailCard [shape=box]
-    VideoCard [shape=box]
+    Implementations [shape=diamond]
+    ImplementationsOf_Item [shape=box]
+    ImplementationsOf_Action [shape=box]
+    ImplementationsOf_ISelectAction [shape=box]
+    ImplementationsOf_Element [shape=box]
+    ImplementationsOf_ToggleableItem [shape=box]
+    ImplementationsOf_Inline [shape=box]
+    ImplementationsOf_Input [shape=box]
   }
   
   
-  subgraph cluster_Response {
-    label=Response
+  subgraph cluster_Style {
+    label=Style
     node [style=filled, fillcolor=gainsboro]
-    Response [shape=diamond]
-    ConversationResourceResponse [shape=box]
-    ErrorResponse [shape=box]
-    ErrorResponseException [shape=box]
-    ResourceResponse [shape=box]
-    TokenExchangeInvokeResponse [shape=box]
-    TokenResponse [shape=box]
+    Style [shape=diamond]
+    ActionStyle [shape=box]
+    ChoiceInputStyle [shape=box]
+    ContainerStyle [shape=box]
+    ImageStyle [shape=box]
+    TextInputStyle [shape=box]
   }
   
   
-  subgraph cluster_Conversation {
-    label=Conversation
+  subgraph cluster_Of {
+    label=Of
     node [style=filled, fillcolor=gainsboro]
-    Conversation [shape=diamond]
-    ConversationAccount [shape=box]
-    ConversationMembers [shape=box]
-    ConversationParameters [shape=box]
-    ConversationReference [shape=box]
-    ConversationResourceResponse [shape=box]
-    ConversationsResult [shape=box]
+    Of [shape=diamond]
+    ImplementationsOf_Item [shape=box]
+    ImplementationsOf_Action [shape=box]
+    ImplementationsOf_ISelectAction [shape=box]
+    ImplementationsOf_Element [shape=box]
+    ImplementationsOf_ToggleableItem [shape=box]
+    ImplementationsOf_Inline [shape=box]
+    ImplementationsOf_Input [shape=box]
   }
-  //Media
-  Media -> MediaCard
-  Media -> MediaUrl
-  Media -> MediaEventValue
-  //Error
-  Error -> ErrorResponseException
-  Error -> Error
-  Error -> ErrorResponse
-  Error -> InnerHttpError
-  //Thumbnail
-  Thumbnail -> ThumbnailUrl
-  Thumbnail -> ThumbnailCard
-  //Attachment
-  Attachment -> AttachmentData
-  Attachment -> AttachmentView
-  Attachment -> AttachmentInfo
-  Attachment -> Attachment
-  //Card
-  Card -> AudioCard
-  Card -> OAuthCard
-  Card -> AnimationCard
-  Card -> ThumbnailCard
-  Card -> CardImage
-  Card -> SigninCard
-  Card -> MediaCard
-  Card -> CardAction
-  Card -> ReceiptCard
-  Card -> BasicCard
-  Card -> HeroCard
-  Card -> VideoCard
-  //Account
-  Account -> ChannelAccount
-  Account -> ConversationAccount
-  //Channel
-  Channel -> ChannelAccount
-  //Response
-  Response -> TokenResponse
-  Response -> ErrorResponse
-  Response -> TokenExchangeInvokeResponse
-  Response -> ResourceResponse
-  Response -> ErrorResponseException
-  Response -> ConversationResourceResponse
-  //Conversation
-  Conversation -> ConversationReference
-  Conversation -> ConversationsResult
-  Conversation -> ConversationMembers
-  Conversation -> ConversationAccount
-  Conversation -> ConversationParameters
-  Conversation -> ConversationResourceResponse
-  //Url
-  Url -> MediaUrl
-  Url -> ThumbnailUrl
+  
+  
+  subgraph cluster_Extendable {
+    label=Extendable
+    node [style=filled, fillcolor=gainsboro]
+    Extendable [shape=diamond]
+    Extendable_Action [shape=box]
+    Extendable_Element [shape=box]
+    Extendable_Input [shape=box]
+    Extendable_Item [shape=box]
+    Extendable_ToggleableItem [shape=box]
+  }
+  
+  
+  subgraph cluster_Text {
+    label=Text
+    node [style=filled, fillcolor=gainsboro]
+    Text [shape=diamond]
+    TextRun [shape=box]
+    Input_Text [shape=box]
+    RichTextBlock [shape=box]
+    TextBlock [shape=box]
+    TextInputStyle [shape=box]
+  }
+  
+  
+  subgraph cluster_Action {
+    label=Action
+    node [style=filled, fillcolor=gainsboro]
+    Action [shape=diamond]
+    Action_OpenUrl [shape=box]
+    Action_ShowCard [shape=box]
+    Action_Submit [shape=box]
+    Action_ToggleVisibility [shape=box]
+    ActionSet [shape=box]
+    ActionStyle [shape=box]
+    ImplementationsOf_Action [shape=box]
+    ImplementationsOf_ISelectAction [shape=box]
+    Extendable_Action [shape=box]
+  }
+  
+  
+  subgraph cluster_Set {
+    label=Set
+    node [style=filled, fillcolor=gainsboro]
+    Set [shape=diamond]
+    ActionSet [shape=box]
+    ColumnSet [shape=box]
+    FactSet [shape=box]
+    ImageSet [shape=box]
+    Input_ChoiceSet [shape=box]
+  }
+  
+  
+  subgraph cluster_Input {
+    label=Input
+    node [style=filled, fillcolor=gainsboro]
+    Input [shape=diamond]
+    Input_Choice [shape=box]
+    Input_ChoiceSet [shape=box]
+    Input_Date [shape=box]
+    Input_Number [shape=box]
+    Input_Text [shape=box]
+    Input_Time [shape=box]
+    Input_Toggle [shape=box]
+    ChoiceInputStyle [shape=box]
+    TextInputStyle [shape=box]
+    ImplementationsOf_Input [shape=box]
+    Extendable_Input [shape=box]
+  }
+  //Implementations
+  Implementations -> ImplementationsOf_Input
+  Implementations -> ImplementationsOf_ToggleableItem
+  Implementations -> ImplementationsOf_ISelectAction
+  Implementations -> ImplementationsOf_Action
+  Implementations -> ImplementationsOf_Element
+  Implementations -> ImplementationsOf_Inline
+  Implementations -> ImplementationsOf_Item
+  //Element
+  Element -> TargetElement
+  Element -> BlockElementHeight
+  Element -> Extendable_Element
+  Element -> ImplementationsOf_Element
+  //Block
+  Block -> BlockElementHeight
+  Block -> TextBlock
+  Block -> RichTextBlock
+  //Style
+  Style -> TextInputStyle
+  Style -> ImageStyle
+  Style -> ChoiceInputStyle
+  Style -> ActionStyle
+  Style -> ContainerStyle
+  //Item
+  Item -> Extendable_ToggleableItem
+  Item -> ImplementationsOf_Item
+  Item -> Extendable_Item
+  Item -> ImplementationsOf_ToggleableItem
+  //Alignment
+  Alignment -> VerticalAlignment
+  Alignment -> HorizontalAlignment
+  Alignment -> VerticalContentAlignment
+  //Of
+  Of -> ImplementationsOf_Input
+  Of -> ImplementationsOf_ToggleableItem
+  Of -> ImplementationsOf_ISelectAction
+  Of -> ImplementationsOf_Action
+  Of -> ImplementationsOf_Element
+  Of -> ImplementationsOf_Inline
+  Of -> ImplementationsOf_Item
+  //Extendable
+  Extendable -> Extendable_ToggleableItem
+  Extendable -> Extendable_Input
+  Extendable -> Extendable_Action
+  Extendable -> Extendable_Element
+  Extendable -> Extendable_Item
+  //Text
+  Text -> TextInputStyle
+  Text -> RichTextBlock
+  Text -> Input_Text
+  Text -> TextBlock
+  Text -> TextRun
+  //Choice
+  Choice -> Input_ChoiceSet
+  Choice -> ChoiceInputStyle
+  Choice -> Input_Choice
   //Action
-  Action -> CardAction
-  Action -> SemanticAction
-  Action -> SuggestedActions
-  //Activity
-  Activity -> SemanticAction
-  Activity -> SuggestedActions
-  Activity -> MessageReaction
-  Activity -> ConversationReference
-  Activity -> ChannelAccount
-  Activity -> Attachment
-  Activity -> TextHighlight
-  Activity -> Entity
-  Activity -> ConversationAccount
-  //AnimationCard
-  AnimationCard -> CardAction
-  AnimationCard -> MediaUrl
-  AnimationCard -> ThumbnailUrl
-  //AttachmentData
-  //AttachmentInfo
-  AttachmentInfo -> AttachmentView
-  //AttachmentView
-  //AudioCard
-  AudioCard -> CardAction
-  AudioCard -> MediaUrl
-  AudioCard -> ThumbnailUrl
-  //BasicCard
-  BasicCard -> CardAction
-  BasicCard -> CardImage
-  //CardAction
-  //CardImage
-  CardImage -> CardAction
-  //ChannelAccount
-  //ConversationAccount
-  //ConversationMembers
-  ConversationMembers -> ChannelAccount
-  //ConversationParameters
-  ConversationParameters -> ChannelAccount
-  ConversationParameters -> Activity
-  //ConversationReference
-  ConversationReference -> ChannelAccount
-  ConversationReference -> ConversationAccount
-  //ConversationResourceResponse
-  //ConversationsResult
-  ConversationsResult -> ConversationMembers
-  //ExpectedReplies
-  ExpectedReplies -> Activity
-  //Entity
-  //ErrorResponse
-  ErrorResponse -> Error
-  //ErrorResponseException
+  Action -> Action_ToggleVisibility
+  Action -> Action_OpenUrl
+  Action -> Action_Submit
+  Action -> ImplementationsOf_ISelectAction
+  Action -> ActionSet
+  Action -> ActionStyle
+  Action -> ImplementationsOf_Action
+  Action -> Extendable_Action
+  Action -> Action_ShowCard
+  //Font
+  Font -> FontSize
+  Font -> FontType
+  Font -> FontWeight
+  //Set
+  Set -> ColumnSet
+  Set -> Input_ChoiceSet
+  Set -> ActionSet
+  Set -> ImageSet
+  Set -> FactSet
+  //Image
+  Image -> ImageSize
+  Image -> BackgroundImage
+  Image -> ImageStyle
+  Image -> ImageSet
+  Image -> Image
+  Image -> ImageFillMode
+  //Input
+  Input -> ImplementationsOf_Input
+  Input -> Input_Time
+  Input -> TextInputStyle
+  Input -> Input_ChoiceSet
+  Input -> Input_Date
+  Input -> Input_Toggle
+  Input -> Input_Text
+  Input -> ChoiceInputStyle
+  Input -> Input_Choice
+  Input -> Input_Number
+  Input -> Extendable_Input
+  //Action_OpenUrl
+  //Action_ShowCard
+  //Action_Submit
+  //Action_ToggleVisibility
+  //TargetElement
+  //AdaptiveCard
+  //ActionSet
+  //Column
+  //ColumnSet
+  //Container
   //Fact
-  //GeoCoordinates
-  //HeroCard
-  HeroCard -> CardAction
-  HeroCard -> CardImage
-  //InnerHttpError
-  //MediaCard
-  MediaCard -> CardAction
-  MediaCard -> MediaUrl
-  MediaCard -> ThumbnailUrl
-  //MediaEventValue
-  //MediaUrl
-  //Mention
-  Mention -> ChannelAccount
-  //MessageReaction
-  //OAuthCard
-  OAuthCard -> CardAction
-  //PagedMembersResult
-  PagedMembersResult -> ChannelAccount
-  //Place
-  //ReceiptCard
-  ReceiptCard -> Fact
-  ReceiptCard -> CardAction
-  ReceiptCard -> ReceiptItem
-  //ReceiptItem
-  ReceiptItem -> CardAction
-  ReceiptItem -> CardImage
-  //ResourceResponse
-  //SemanticAction
-  //SigninCard
-  SigninCard -> CardAction
-  //SuggestedActions
-  SuggestedActions -> CardAction
-  //TextHighlight
-  //Thing
-  //ThumbnailCard
-  ThumbnailCard -> CardAction
-  ThumbnailCard -> CardImage
-  //ThumbnailUrl
-  //TokenExchangeInvokeRequest
-  //TokenExchangeInvokeResponse
-  //TokenExchangeState
-  TokenExchangeState -> ConversationReference
-  //TokenRequest
-  //TokenResponse
-  //Transcript
-  Transcript -> Activity
-  //VideoCard
-  VideoCard -> CardAction
-  VideoCard -> MediaUrl
-  VideoCard -> ThumbnailUrl
+  //FactSet
+  //ImageSet
+  //TextRun
+  //Input_Choice
+  //Input_ChoiceSet
+  //Input_Date
+  //Input_Number
+  //Input_Text
+  //Input_Time
+  //Input_Toggle
+  //Media
+  //MediaSource
+  //RichTextBlock
+  //TextBlock
+  //ActionStyle
+  //BlockElementHeight
+  //ChoiceInputStyle
+  //Colors
+  //ContainerStyle
+  //FallbackOption
+  //FontSize
+  //FontType
+  //FontWeight
+  //HorizontalAlignment
+  //ImageFillMode
+  //ImageSize
+  //ImageStyle
+  //Spacing
+  //TextInputStyle
+  //VerticalAlignment
+  //VerticalContentAlignment
+  //BackgroundImage
+  //ImplementationsOf_Item
+  //ImplementationsOf_Action
+  //ImplementationsOf_ISelectAction
+  //ImplementationsOf_Element
+  //ImplementationsOf_ToggleableItem
+  //ImplementationsOf_Inline
+  //ImplementationsOf_Input
+  //Extendable_Action
+  //Extendable_Element
+  //Extendable_Input
+  //Extendable_Item
+  //Extendable_ToggleableItem
 }
